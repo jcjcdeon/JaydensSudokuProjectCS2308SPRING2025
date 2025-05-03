@@ -1,0 +1,16 @@
+# Compiled object files
+*.o
+
+# Executable files
+a.out
+main
+
+# Build directories
+/build/
+bin/
+
+# Mac-specific
+.DS_Store
+
+# Backup files
+*~
