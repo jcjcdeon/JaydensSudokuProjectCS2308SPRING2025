@@ -21,7 +21,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89069b6c-c45e-44fa-83a1-56a5e0e8bed2" name="Changes" comment="Code" />
+    <list default="true" id="89069b6c-c45e-44fa-83a1-56a5e0e8bed2" name="Changes" comment="Code">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Sudoku_Project_Code.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +42,7 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="WARN_ABOUT_LARGE_FILES_LIMIT_MB" value="292" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -52,6 +56,9 @@
     &quot;accountId&quot;: &quot;b355d39e-714c-4c5b-942b-0ba847f40456&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2025" />
@@ -84,7 +91,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;/Users/jayden/CLionProjects/untitled6/main.cpp&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -102,6 +109,9 @@
       <workItem from="1746245567773" duration="1000" />
       <workItem from="1746245724733" duration="359000" />
       <workItem from="1746246121086" duration="624000" />
+      <workItem from="1746246873013" duration="332000" />
+      <workItem from="1746247208849" duration="63000" />
+      <workItem from="1746247425346" duration="256000" />
     </task>
     <task id="LOCAL-00001" summary="Code">
       <option name="closed" value="true" />
