@@ -1,1 +1,31 @@
+# Ignore CLion project files
+.idea/
+cmake-build-*/
+*.iml
+
+# Ignore build system files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ignore compiled object files and binaries
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.dylib
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore generated Sudoku data
+data/*.txt
+
+# Optional: ignore log/debug output
+*.log
 
