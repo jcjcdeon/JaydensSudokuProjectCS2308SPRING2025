@@ -1,12 +1,18 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <string>
+/**
+ * Deallocates memory used for the Sudoku grid.
+ *
+ * @param board The 9x9 Sudoku grid to deallocate.
+ */
+void deallocateBoard(int board[9][9]);
 
-// Ensures a directory exists (e.g. "data/")
-void ensureDataFolder();
-
-// Returns a string like "data/board_001.txt"
-std::string generateFilename(const std::string& prefix, const std::string& ext, int index);
+/**
+ * Initializes a new 9x9 Sudoku board with all elements set to zero.
+ *
+ * @param board The 9x9 Sudoku grid to initialize.
+ */
+void initializeBoard(int board[9][9]);
 
 #endif // UTILS_H
