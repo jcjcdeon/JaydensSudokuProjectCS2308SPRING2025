@@ -1,47 +1,41 @@
 #include "sudoku_io.h"
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
-
-void printBoard(int board[9][9]) {
-    for (int row = 0; row < 9; ++row) {
-        if (row % 3 == 0 && row != 0)
-            std::cout << "------+-------+------\n";
-        for (int col = 0; col < 9; ++col) {
-            if (col % 3 == 0 && col != 0)
-                std::cout << "| ";
-            std::cout << board[row][col] << " ";
-        }
-        std::cout << "\n";
+/**
+ * Writes the Sudoku board to a file.
+ * @param filename Path to the output file
+ * @param board The 9x9 Sudoku grid
+ */
+void saveBoardToFile(const std::string& filename, const int board[9][9]) {
+    std::ofstream out(filename);
+    if (!out) {
+        std::cerr << "Failed to open file: " << filename << '\n';
+        return;
     }
+    for (int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            out << board[i][j] << (j == 8 ? '\n' : ' ');
+        }
+    }
+    out.close();
 }
 
-// Load a board from a file (plain text: 81 integers)
-bool loadBoardFromFile(const std::string& filename, int board[9][9]) {
-    std::ifstream infile(filename);
-    if (!infile.is_open()) return false;
-
-    for (int row = 0; row < 9; ++row) {
-        for (int col = 0; col < 9; ++col) {
-            infile >> board[row][col];
-            if (infile.fail()) return false;
+/**
+ * Reads a Sudoku board from a file.
+ * @param filename Path to the input file
+ * @param board The 9x9 grid to fill with values
+ */
+void loadBoardFromFile(const std::string& filename, int board[9][9]) {
+    std::ifstream in(filename);
+    if (!in) {
+        std::cerr << "Failed to open file: " << filename << '\n';
+        return;
+    }
+    for (int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            in >> board[i][j];
         }
     }
-
-    return true;
-}
-
-// Save a board to a file (plain text: 9x9 grid)
-bool saveBoardToFile(const std::string& filename, int board[9][9]) {
-    std::ofstream outfile(filename);
-    if (!outfile.is_open()) return false;
-
-    for (int row = 0; row < 9; ++row) {
-        for (int col = 0; col < 9; ++col) {
-            outfile << board[row][col] << " ";
-        }
-        outfile << "\n";
-    }
-
-    return true;
+    in.close();
 }
