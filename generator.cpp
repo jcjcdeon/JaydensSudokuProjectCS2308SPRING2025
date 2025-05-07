@@ -1,63 +1,63 @@
 #include "generator.h"
-#include <random>
+#include "sudoku.h"
+#include "utils.h"  // ✅ include to use initializeBoard()
 #include <algorithm>
-#include <iostream>
+#include <random>
+#include <chrono>
+#include <cstring>
 
-// Function to initialize a board to all zeros
-void initializeBoard(int board[9][9]) {
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            board[i][j] = 0;
-        }
-    }
-}
-
-// Function to fill the diagonal 3x3 subgrids
-void fillDiagonal(int board[9][9]) {
-    for (int i = 0; i < 9; i += 3) {
-        shuffleBoard(board);
-        fillBox(board, i, i);
-    }
-}
-
-// Function to fill a 3x3 box with valid numbers
-void fillBox(int board[9][9], int row, int col) {
-    std::vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    std::shuffle(nums.begin(), nums.end(), std::default_random_engine{});
-    int k = 0;
-    for (int i = row; i < row + 3; ++i) {
-        for (int j = col; j < col + 3; ++j) {
-            board[i][j] = nums[k++];
-        }
-    }
-}
-
-// Function to shuffle the board to create randomness
-void shuffleBoard(int board[9][9]) {
-    std::vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    std::shuffle(nums.begin(), nums.end(), std::default_random_engine{});
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            board[i][j] = nums[j];
-        }
-    }
-}
-
-// Function to remove digits from the board to create a puzzle
-void removeDigits(int board[9][9], int count) {
-    while (count != 0) {
-        int row = rand() % 9;
-        int col = rand() % 9;
-        if (board[row][col] != 0) {
-            board[row][col] = 0;
-            count--;
-        }
-    }
-}
-
-// Generate a solvable puzzle
-void generatePuzzle(int board[9][9]) {
+/**
+ * Fills the board with a complete valid solution using basic solving.
+ */
+void generateCompleteBoard(int board[9][9]) {
     initializeBoard(board);
-    fillDiagonal(board);
-    removeDigits(board, 40);  // Randomly remove 40 digits
+    solveBasic(board);
+    shuffleBoard(board);
+}
+
+/**
+ * Generates a playable puzzle by removing a fixed number of cells from a full board.
+ */
+void generatePuzzle(int board[9][9], int clues) {
+    generateCompleteBoard(board);
+
+    int cellsToRemove = 81 - clues;
+    std::vector<std::pair<int, int>> positions;
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            positions.emplace_back(r, c);
+        }
+    }
+    std::shuffle(positions.begin(), positions.end(), std::default_random_engine(std::random_device{}()));
+
+    for (int i = 0; i < cellsToRemove; ++i) {
+        board[positions[i].first][positions[i].second] = 0;
+    }
+}
+
+/**
+ * Randomly swaps rows and columns within 3x3 blocks to shuffle a board.
+ */
+void shuffleBoard(int board[9][9]) {
+    std::random_device rd;
+    std::mt19937 g(rd());
+
+    for (int i = 0; i < 3; ++i) {
+        int rows[3] = {i * 3, i * 3 + 1, i * 3 + 2};
+        std::shuffle(rows, rows + 3, g);
+        int temp[9][9];
+        memcpy(temp, board, sizeof(temp));
+        for (int r = 0; r < 3; ++r)
+            memcpy(board[rows[r]], temp[i * 3 + r], sizeof(int) * 9);
+    }
+
+    for (int i = 0; i < 3; ++i) {
+        int cols[3] = {i * 3, i * 3 + 1, i * 3 + 2};
+        std::shuffle(cols, cols + 3, g);
+        int temp[9][9];
+        memcpy(temp, board, sizeof(temp));
+        for (int r = 0; r < 9; ++r)
+            for (int c = 0; c < 3; ++c)
+                board[r][i * 3 + c] = temp[r][cols[c]];
+    }
 }
