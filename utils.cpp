@@ -1,18 +1,27 @@
 #include "utils.h"
-#include <filesystem>
-#include <sstream>
-#include <iomanip>
+#include <iostream>
 
-namespace fs = std::filesystem;
-
-void ensureDataFolder() {
-    if (!fs::exists("data")) {
-        fs::create_directory("data");
-    }
+/**
+ * Deallocates memory used for the Sudoku grid.
+ *
+ * @param board The 9x9 Sudoku grid to deallocate.
+ */
+void deallocateBoard(int board[9][9]) {
+    // In C++, deallocation is not needed for statically allocated arrays
+    // This function is a placeholder to maintain uniformity
+    std::cout << "Deallocating board..." << std::endl;
 }
 
-std::string generateFilename(const std::string& prefix, const std::string& ext, int index) {
-    std::ostringstream ss;
-    ss << "data/" << prefix << "_" << std::setw(3) << std::setfill('0') << index << "." << ext;
-    return ss.str();
+/**
+ * Initializes a new 9x9 Sudoku board with all elements set to zero.
+ *
+ * @param board The 9x9 Sudoku grid to initialize.
+ */
+void initializeBoard(int board[9][9]) {
+    // Set all cells in the board to zero
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            board[i][j] = 0;
+        }
+    }
 }
